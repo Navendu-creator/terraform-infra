@@ -1,9 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "REPLACE_WITH_YOUR_BUCKET"
-    key            = "terraform/dev/terraform.tfstate"
-    region         = "REPLACE_REGION"
-    dynamodb_table = "REPLACE_DYNAMODB_TABLE"
-    encrypt        = true
+    bucket = "terraformdevmodule"
+    key    = "terraform/dev/terraform.tfstate"
+    region = "us-east-1"
+    encrypt = true
   }
 }

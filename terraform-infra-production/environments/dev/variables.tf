@@ -1,5 +1,5 @@
 variable "env" {
-  type    = string
+  type        = string
   description = "Environment name"
 }
 
@@ -20,16 +20,29 @@ variable "private_subnets" {
 }
 
 variable "k8s_version" {
-  type = string
+  type    = string
   default = "1.29"
 }
 
 variable "node_groups" {
-  type = any
+  type    = any
   default = {}
 }
 
 variable "tags" {
-  type = map(string)
+  type    = map(string)
   default = {}
+}
+
+
+variable "azs" {
+  type = list(string)
+  description = "Availability zones for networking module"
+}
+
+
+variable "eks_managed_node_groups" {
+  type        = any
+  description = "EKS managed node groups configuration"
+  default     = {}
 }

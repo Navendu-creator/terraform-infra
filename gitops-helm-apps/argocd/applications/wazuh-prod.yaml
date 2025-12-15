@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wazuh-prod
+  namespace: argocd
+spec:
+  project: wazuh
+
+  source:
+    repoURL: https://github.com/Navendu-creator/gitops-helm-apps.git
+    targetRevision: main
+    path: apps/wazuh
+    helm:
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: wazuh-prod
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

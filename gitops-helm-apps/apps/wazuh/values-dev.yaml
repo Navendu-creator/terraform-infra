@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  repository: wazuh/wazuh-manager
+  tag: "4.8.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 55000

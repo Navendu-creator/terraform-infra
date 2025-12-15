@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: wazuh
+  namespace: argocd
+spec:
+  sourceRepos:
+    - https://github.com/Navendu-creator/gitops-helm-apps.git
+  destinations:
+    - namespace: wazuh-dev
+      server: https://kubernetes.default.svc
+    - namespace: wazuh-prod
+      server: https://kubernetes.default.svc

@@ -8,6 +8,6 @@ service:
   port: 80
 
 ingress:
-  enabled: true
+  enabled: false
   className: nginx
   host: 100.31.92.168

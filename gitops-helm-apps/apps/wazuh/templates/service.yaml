@@ -11,7 +11,7 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 80
+      targetPort: 3080
 {{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress

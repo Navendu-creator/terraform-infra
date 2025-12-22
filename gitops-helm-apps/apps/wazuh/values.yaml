@@ -11,4 +11,4 @@ service:
 ingress:
   enabled: false
   className: nginx
-  host: 100.31.92.168
+  host: 98.92.20.86

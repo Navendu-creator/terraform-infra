@@ -22,15 +22,3 @@ resource "aws_subnet" "private" {
 
 # Note: NAT and Internet Gateway resources should be added for production as required.
 # For production-grade, consider NAT gateway per AZ, route tables, and egress controls.
-
-output "vpc_id" {
-  value = aws_vpc.this.id
-}
-
-output "public_subnets" {
-  value = aws_subnet.public[*].id
-}
-
-output "private_subnets" {
-  value = aws_subnet.private[*].id
-}

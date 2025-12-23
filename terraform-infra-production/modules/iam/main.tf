@@ -20,7 +20,3 @@ resource "aws_iam_role_policy" "inline" {
   role     = aws_iam_role.this.id
   policy   = each.value
 }
-
-output "role_arn" {
-  value = aws_iam_role.this.arn
-}

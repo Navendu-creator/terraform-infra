@@ -14,3 +14,12 @@ variable "inline_policies" {
   description = "Map of inline policy name => JSON policy document"
   default     = {}
 }
+
+
+variable "tags" {
+  description = "Common tags"
+  type        = map(string)
+  default     = {}
+}
+
+

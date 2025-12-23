@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-module "eks" {
+module "eks_aws_official" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.9.0"
 
@@ -17,15 +17,12 @@ module "eks" {
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnets
 
-  node_groups = var.node_groups
+  # Har node group mein custom IAM Role inject karne ka sahi tarika
+  eks_managed_node_groups = {
+    for k, v in var.eks_managed_node_groups : k => merge(v, {
+      iam_role_arn = var.node_iam_role_arn
+    })
+  }
 
   tags = var.tags
-}
-
-output "cluster_endpoint" {
-  value = module.eks.cluster_endpoint
-}
-
-output "cluster_name" {
-  value = module.eks.cluster_id
 }

@@ -46,3 +46,5 @@ variable "eks_managed_node_groups" {
   description = "EKS managed node groups configuration"
   default     = {}
 }
+
+

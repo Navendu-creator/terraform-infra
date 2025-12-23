@@ -8,7 +8,7 @@ variable "vpc_cidr" {
   type        = string
   description = "VPC CIDR block"
   validation {
-    condition     = can(regex("^\d+\.\d+\.\d+\.\d+/\d+$", var.vpc_cidr))
+    condition = can(regex("^\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+$", var.vpc_cidr))
     error_message = "vpc_cidr must be a valid CIDR (e.g. 10.0.0.0/16)"
   }
 }

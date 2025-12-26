@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: wazuh-indexer
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceName: wazuh-indexer
+  replicas: {{ .Values.indexer.replicas }}
+  selector:
+    matchLabels:
+      app: wazuh-indexer
+  template:
+    metadata:
+      labels:
+        app: wazuh-indexer
+    spec:
+      containers:
+        - name: indexer
+          image: {{ .Values.indexer.image }}
+          ports:
+            - containerPort: 9200
+          volumeMounts:
+            - name: indexer-data
+              mountPath: /var/lib/wazuh-indexer
+  volumeClaimTemplates:
+    - metadata:
+        name: indexer-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.indexer.storage.size }}

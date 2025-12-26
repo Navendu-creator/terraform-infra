@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wazuh-dashboard
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.dashboard.replicas }}
+  selector:
+    matchLabels:
+      app: wazuh-dashboard
+  template:
+    metadata:
+      labels:
+        app: wazuh-dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: {{ .Values.dashboard.image }}
+          ports:
+            - containerPort: 5601
+
+          env:
+            - name: OPENSEARCH_HOSTS
+              value: "https://wazuh-indexer:9200"

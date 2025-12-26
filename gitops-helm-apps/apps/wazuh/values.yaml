@@ -1,14 +1,18 @@
-replicaCount: 1
+namespace: wazuh
 
-image:
-  repository: nginx
-  tag: latest
+global:
+  imagePullPolicy: IfNotPresent
 
-service:
-  port: 80
-  targetPort: 3080
+manager:
+  image: wazuh/wazuh-manager:4.7.3
+  replicas: 1
 
-ingress:
-  enabled: false
-  className: nginx
-  host: 100.31.92.168
+indexer:
+  image: wazuh/wazuh-indexer:4.7.3
+  replicas: 1
+  storage:
+    size: 10Gi
+
+dashboard:
+  image: wazuh/wazuh-dashboard:4.7.3
+  replicas: 1

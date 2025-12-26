@@ -1,10 +1,12 @@
-replicaCount: 1
+manager:
+  replicas: 1
 
-image:
-  repository: wazuh/wazuh-manager
-  tag: "4.8.0"
-  pullPolicy: IfNotPresent
+indexer:
+  replicas: 1
+  storage:
+    size: 5Gi
 
-service:
-  type: ClusterIP
-  port: 55000
+dashboard:
+  replicas: 1
+  opensearch:
+    hosts: "http://wazuh-indexer:9200"
